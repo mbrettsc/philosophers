@@ -6,7 +6,7 @@
 /*   By: mbrettsc <mbrettsc@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/15 18:56:01 by mbrettsc          #+#    #+#             */
-/*   Updated: 2023/02/16 01:27:54 by mbrettsc         ###   ########.fr       */
+/*   Updated: 2023/02/18 17:27:02 by mbrettsc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,4 +44,12 @@ int	err_msg(char *msg)
 {
 	printf("%s", msg);
 	return (0);
+}
+
+void	print(t_philo *philo,char *str)
+{
+	pthread_mutex_lock(&philo->table->is_printing);
+	if (!philo->table->stop)
+		printf("%llu %llu %s\n", time_from_start(philo->table), philo->id, str);
+	pthread_mutex_unlock(&philo->table->is_printing);
 }

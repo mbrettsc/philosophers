@@ -6,7 +6,7 @@
 /*   By: mbrettsc <mbrettsc@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/15 18:42:31 by mbrettsc          #+#    #+#             */
-/*   Updated: 2023/02/16 01:55:19 by mbrettsc         ###   ########.fr       */
+/*   Updated: 2023/02/17 20:08:26 by mbrettsc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ t_table	*parse(int ac, char **av)
 	
 	if (!valid_check(ac, av))
 		return (NULL);
-	table = (t_table *)malloc(sizeof(t_table));
+	table = malloc(sizeof(t_table));
 	if (!table)
 		return (NULL);
 	table->number_of_philos = unsigned_atoi(*(av + 1));
@@ -46,8 +46,9 @@ t_table	*parse(int ac, char **av)
 	table->number_of_must_eat = -1;
 	if (ac == 6)
 		table->number_of_must_eat = unsigned_atoi(*(av + 5));
-	table->philos = (t_philo *)malloc(sizeof(t_philo));
-	table->forks = (pthread_mutex_t *)malloc(sizeof(pthread_mutex_t));
+	table->philos = malloc(sizeof(t_philo) * table->number_of_philos);
+	table->forks = malloc(sizeof(pthread_mutex_t) * table->number_of_philos);
+	table->time = current_time();
 	table->stop = 0;
 	return (table);
 }
