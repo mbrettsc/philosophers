@@ -6,11 +6,11 @@
 /*   By: mbrettsc <mbrettsc@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/15 18:42:31 by mbrettsc          #+#    #+#             */
-/*   Updated: 2023/02/21 17:00:16 by mbrettsc         ###   ########.fr       */
+/*   Updated: 2023/02/24 16:21:38 by mbrettsc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "philo.h"
+#include "philo_bonus.h"
 
 int	valid_check(int ac, char **av)
 {
@@ -47,9 +47,6 @@ t_table	*parse(int ac, char **av)
 	if (ac == 6)
 		table->number_of_must_eat = unsigned_atoi(*(av + 5));
 	table->philos = malloc(sizeof(t_philo) * table->number_of_philos);
-	table->is_dying = malloc(sizeof(sem_t));
-	table->is_printing = malloc(sizeof(sem_t));
-	table->philos->forks = malloc(sizeof(sem_t) * table->number_of_philos);
 	table->time = current_time();
 	table->stop = 0;
 	return (table);

@@ -6,11 +6,11 @@
 /*   By: mbrettsc <mbrettsc@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/16 01:43:31 by mbrettsc          #+#    #+#             */
-/*   Updated: 2023/02/21 14:12:36 by mbrettsc         ###   ########.fr       */
+/*   Updated: 2023/02/24 18:01:39 by mbrettsc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "philo.h"
+#include "philo_bonus.h"
 
 uint64_t	current_time(void)
 {
@@ -30,5 +30,10 @@ void	time_usleep(uint64_t micsec)
 	uint64_t	current;
 
 	current = current_time();
-	usleep(micsec * 1000);
+	while (1)
+	{
+		if (current_time() - current >= micsec)
+			break ;
+		usleep(100);
+	}
 }

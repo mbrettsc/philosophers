@@ -3,7 +3,7 @@ CFLAGS = -Wall -Wextra -Werror -pthread
 RM = rm -rf
 
 NAME = philo_bonus
-SRCS = init.c parse.c routine.c utils.c die.c main.c time.c
+SRCS = init.c parse.c routine.c utils.c main.c time.c
 
 ${NAME}:
 	${CC} ${CFLAGS} ${SRCS} -o ${NAME}

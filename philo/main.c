@@ -6,7 +6,7 @@
 /*   By: mbrettsc <mbrettsc@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/15 18:00:21 by mbrettsc          #+#    #+#             */
-/*   Updated: 2023/02/20 20:00:48 by mbrettsc         ###   ########.fr       */
+/*   Updated: 2023/02/21 14:27:25 by mbrettsc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	end_threads(t_table *table)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	pthread_mutex_destroy(&table->is_dying);
@@ -23,15 +23,15 @@ void	end_threads(t_table *table)
 		pthread_mutex_destroy(&table->forks[i]);
 	free(table->forks);
 	free(table->philos);
-	free(table);	
+	free(table);
 }
 
 int	main(int ac, char **av)
 {
 	t_table	*table;
-	
+
 	table = parse(ac, av);
-	if  (table != NULL)
+	if (table != NULL)
 	{
 		start_threads(table);
 		end_threads(table);

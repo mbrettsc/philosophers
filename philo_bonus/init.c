@@ -6,11 +6,26 @@
 /*   By: mbrettsc <mbrettsc@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/17 18:40:12 by mbrettsc          #+#    #+#             */
-/*   Updated: 2023/02/21 20:22:40 by mbrettsc         ###   ########.fr       */
+/*   Updated: 2023/02/24 18:01:22 by mbrettsc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "philo.h"
+#include "philo_bonus.h"
+
+int	must_eat_check(t_table *table)
+{
+	int	i;
+
+	if (table->number_of_must_eat < 0)
+		return (0);
+	i = -1;
+	while (++i < table->number_of_philos)
+	{
+		if (table->philos->num_eat < table->number_of_must_eat)
+			return (0);
+	}
+	return (1);
+}
 
 void	philo_init(t_philo *philo, t_table *table, int i)
 {
@@ -20,16 +35,23 @@ void	philo_init(t_philo *philo, t_table *table, int i)
 	philo->last_eat = current_time();
 }
 
-void	start_forks(t_table *table)
+void	init_sem(t_table *table)
 {
-	int	i;
-
 	sem_unlink("./forks");
 	sem_unlink("./printing");
 	sem_unlink("./dying");
-	table->philos->forks = sem_open("./forks", O_CREAT,S_IRWXG, 0666, table->number_of_philos);
-	table->is_printing = sem_open("./forks", O_CREAT,S_IRWXG, 0666, 1);
-	table->is_dying = sem_open("./dying", O_CREAT,S_IRWXG, 0666, 1);
+	table->philos->forks = sem_open("./forks", O_CREAT, 0666,
+			table->number_of_philos);
+	table->is_printing = sem_open("./printing", O_CREAT, 0666, 1);
+	table->is_dying = sem_open("./dying", O_CREAT, 0666, 1);
+}
+
+void	start_forks(t_table *table)
+{
+	int	i;
+	int	response;
+
+	init_sem(table);
 	i = -1;
 	while (++i < table->number_of_philos)
 		philo_init(&table->philos[i], table, i);
@@ -37,12 +59,12 @@ void	start_forks(t_table *table)
 	while (++i < table->number_of_philos)
 	{
 		table->philos[i].child = fork();
-		if (table->philos[i].child < 0)
-			print(table->philos, "Fork Init Error\n");
-		else if (table->philos[i].child == 0)
-		{
+		if (table->philos[i].child == 0)
 			philo_routine(table->philos + i);
-		}
+		usleep(100);
 	}
-	die_check(table);
+	waitpid(-1, &response, 0);
+	i = -1;
+	while (++i < table->number_of_philos)
+		kill (table->philos[i].child, SIGKILL);
 }

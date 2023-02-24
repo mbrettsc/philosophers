@@ -6,7 +6,7 @@
 /*   By: mbrettsc <mbrettsc@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/17 16:42:54 by mbrettsc          #+#    #+#             */
-/*   Updated: 2023/02/20 18:51:46 by mbrettsc         ###   ########.fr       */
+/*   Updated: 2023/02/21 14:23:13 by mbrettsc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,8 +39,8 @@ void	_think(t_philo *philo)
 
 void	*philo_routine(void *_philo)
 {
-	t_philo *philo;
-	
+	t_philo	*philo;
+
 	philo = (t_philo *)_philo;
 	if (philo->id % 2 == 0)
 		time_usleep(10);

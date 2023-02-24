@@ -6,15 +6,15 @@
 /*   By: mbrettsc <mbrettsc@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/18 14:29:52 by mbrettsc          #+#    #+#             */
-/*   Updated: 2023/02/20 19:02:51 by mbrettsc         ###   ########.fr       */
+/*   Updated: 2023/02/21 15:51:06 by mbrettsc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-int must_eat_check(t_table *table)
+int	must_eat_check(t_table *table)
 {
-	uint64_t	i;
+	int	i;
 
 	if (table->number_of_must_eat < 0)
 		return (0);
@@ -29,17 +29,20 @@ int must_eat_check(t_table *table)
 
 void	die_check(t_table *table)
 {
-	uint16_t	i;
+	int	i;
 
 	if (table->number_of_philos == 1)
+	{
 		print(table->philos, DIE);
+	}
 	while (table->number_of_philos > 1)
 	{
 		i = -1;
 		while (++i < table->number_of_philos)
 		{
 			pthread_mutex_lock(&table->is_dying);
-			if ((current_time() - table->philos[i].last_eat) >= table->time_to_die)
+			if ((current_time() - table->philos[i].last_eat)
+				>= table->time_to_die)
 			{
 				print(table->philos + i, DIE);
 				table->stop = 1;

@@ -6,7 +6,7 @@
 /*   By: mbrettsc <mbrettsc@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/16 01:43:31 by mbrettsc          #+#    #+#             */
-/*   Updated: 2023/02/20 18:47:02 by mbrettsc         ###   ########.fr       */
+/*   Updated: 2023/02/21 14:12:36 by mbrettsc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,5 @@ void	time_usleep(uint64_t micsec)
 	uint64_t	current;
 
 	current = current_time();
-	while (micsec > current_time() - current)
-		usleep(micsec * 10);
+	usleep(micsec * 1000);
 }

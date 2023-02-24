@@ -6,17 +6,20 @@
 /*   By: mbrettsc <mbrettsc@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/15 18:00:21 by mbrettsc          #+#    #+#             */
-/*   Updated: 2023/02/21 18:11:13 by mbrettsc         ###   ########.fr       */
+/*   Updated: 2023/02/24 16:17:07 by mbrettsc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "philo.h"
+#include "philo_bonus.h"
 
 void	end_ps(t_table *table)
 {
 	sem_close(table->is_dying);
 	sem_close(table->is_printing);
 	sem_close(table->philos->forks);
+	sem_unlink("./forks");
+	sem_unlink("./printing");
+	sem_unlink("./dying");
 	free(table->philos);
 	free(table);
 }

@@ -6,11 +6,11 @@
 /*   By: mbrettsc <mbrettsc@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/15 18:56:01 by mbrettsc          #+#    #+#             */
-/*   Updated: 2023/02/21 20:00:12 by mbrettsc         ###   ########.fr       */
+/*   Updated: 2023/02/24 15:09:36 by mbrettsc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "philo.h"
+#include "philo_bonus.h"
 
 int	is_digit(char *str)
 {
@@ -44,6 +44,12 @@ int	err_msg(char *msg)
 {
 	printf("%s", msg);
 	return (0);
+}
+
+void	print_dead(t_philo *philo, char *str)
+{
+	sem_wait(philo->table->is_dying);
+	printf("%llu %llu %s\n", time_from_start(philo->table), philo->id, str);
 }
 
 void	print(t_philo *philo, char *str)

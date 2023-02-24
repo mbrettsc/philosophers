@@ -1,17 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   philo.h                                            :+:      :+:    :+:   */
+/*   philo_bonus.h                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mbrettsc <mbrettsc@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/02/15 18:00:49 by mbrettsc          #+#    #+#             */
-/*   Updated: 2023/02/21 20:11:36 by mbrettsc         ###   ########.fr       */
+/*   Created: 2023/02/24 16:22:47 by mbrettsc          #+#    #+#             */
+/*   Updated: 2023/02/24 16:48:38 by mbrettsc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PHILO_H
-# define PHILO_H
+#ifndef PHILO_BONUS_H
+# define PHILO_BONUS_H
 
 # include <semaphore.h>
 # include <pthread.h>
@@ -55,13 +55,14 @@ typedef struct s_table
 t_table			*parse(int ac, char **av);
 uint64_t		time_from_start(t_table *table);
 uint64_t		current_time(void);
+int				must_eat_check(t_table *table);
 int				is_digit(char *str);
 int				err_msg(char *msg);
 void			start_forks(t_table *table);
 void			philo_routine(t_philo *philos);
-void			die_check(t_table *table);
 void			print(t_philo *philo, char *str);
 void			time_usleep(uint64_t micsec);
+void			print_dead(t_philo *philo, char *str);
 unsigned int	unsigned_atoi(char *str);
 
 #endif
