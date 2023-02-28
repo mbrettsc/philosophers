@@ -15,9 +15,7 @@
 void	*die_check(void *get_philo)
 {
 	t_philo	*philo;
-	int		i;
 
-	i = -1;
 	philo = (t_philo *)get_philo;
 	while (1)
 	{
