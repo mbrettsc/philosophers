@@ -6,7 +6,7 @@
 /*   By: mbrettsc <mbrettsc@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/17 18:40:12 by mbrettsc          #+#    #+#             */
-/*   Updated: 2023/02/27 00:58:59 by mbrettsc         ###   ########.fr       */
+/*   Updated: 2023/04/10 16:33:44 by mbrettsc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,10 +21,11 @@ int	must_eat_check(t_table *table)
 	i = -1;
 	while (++i < table->number_of_philos)
 	{
-		if (table->philos->num_eat < table->number_of_must_eat)
-			return (0);
+		if ((table->philos[i].num_eat == table->number_of_must_eat)
+			&& table->philos[i].id % 2 == 0)
+			return (1);
 	}
-	return (1);
+	return (0);
 }
 
 void	philo_init(t_philo *philo, t_table *table, int i)
