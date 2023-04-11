@@ -6,7 +6,7 @@
 /*   By: mbrettsc <mbrettsc@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/15 18:00:21 by mbrettsc          #+#    #+#             */
-/*   Updated: 2023/02/21 14:27:25 by mbrettsc         ###   ########.fr       */
+/*   Updated: 2023/04/11 16:05:11 by mbrettsc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,9 @@ void	end_threads(t_table *table)
 {
 	int	i;
 
-	i = 0;
+	i = -1;
+	while (++i < table->number_of_philos)
+		pthread_join(table->philos[i].thread, NULL);
 	pthread_mutex_destroy(&table->is_dying);
 	pthread_mutex_destroy(&table->is_printing);
 	while (i++ < table->number_of_philos)
