@@ -6,7 +6,7 @@
 /*   By: mbrettsc <mbrettsc@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/17 16:42:54 by mbrettsc          #+#    #+#             */
-/*   Updated: 2023/02/21 14:23:13 by mbrettsc         ###   ########.fr       */
+/*   Updated: 2023/04/11 15:54:05 by mbrettsc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,10 +18,10 @@ void	_eat(t_philo *philo)
 	print(philo, TAKEN_FORK);
 	pthread_mutex_lock(philo->lfork);
 	print(philo, TAKEN_FORK);
+	philo->num_eat++;
 	print(philo, IS_EATING);
 	time_usleep(philo->table->time_to_eat);
 	philo->last_eat = current_time();
-	philo->num_eat++;
 	pthread_mutex_unlock(philo->rfork);
 	pthread_mutex_unlock(philo->lfork);
 }
