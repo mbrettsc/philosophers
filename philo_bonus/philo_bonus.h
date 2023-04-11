@@ -6,7 +6,7 @@
 /*   By: mbrettsc <mbrettsc@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/24 16:22:47 by mbrettsc          #+#    #+#             */
-/*   Updated: 2023/02/26 23:21:43 by mbrettsc         ###   ########.fr       */
+/*   Updated: 2023/04/11 18:12:11 by mbrettsc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,5 +64,6 @@ void			print(t_philo *philo, char *str);
 void			time_usleep(uint64_t micsec);
 void			print_dead(t_philo *philo, char *str);
 unsigned int	unsigned_atoi(char *str);
+void			philo_free(t_philo *philo);
 
 #endif
